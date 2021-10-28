@@ -1,0 +1,14 @@
+{
+  "name": "express-server",
+  "version": "1.0.0",
+  "description": "Server with nodejs and express",
+  "author": "<Name Surname>",
+  "license": "ISC",
+  "dependencies": {
+    "joi": "^17.4.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "nodemailer": "^6.7.0"
+  }
+}
