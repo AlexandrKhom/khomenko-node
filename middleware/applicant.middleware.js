@@ -1,5 +1,5 @@
-const ErrorHandler = require("../error/ErrorHandler");
-const { Applicant } = require("../dataBase");
+const HTTPError = require("../error/HTTPError");
+const { getApplicantByObj } = require("../service/applicant.service");
 
 module.exports = {
   checkUniqEmail: async (req, res, next) => {
@@ -10,10 +10,10 @@ module.exports = {
         return next();
       }
 
-      const applicant = await Applicant.findOne({ email });
+      const applicant = await getApplicantByObj({ email })
 
       if (applicant) {
-        throw new ErrorHandler('Email already exist', 409);
+        throw new HTTPError('Email already exist', 409);
       }
 
       next();

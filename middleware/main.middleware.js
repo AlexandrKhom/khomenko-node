@@ -1,23 +1,24 @@
 const { isValidObjectId } = require('mongoose');
 
-const ErrorHandler = require("../error/ErrorHandler");
+const HTTPError = require("../error/HTTPError");
+const { getItemById } = require("../service/main.service");
 
 module.exports = {
-  checkIdMiddleware: (schema, typeId) => async (req, res, next) => {
+  checkIdMiddleware: (schema) => async (req, res, next) => {
     try {
-      const id = req.params[typeId];
+      const { id } = req.params;
 
       if (!isValidObjectId(id)) {
-        throw new ErrorHandler('Not valid ID', 400);
+        throw new HTTPError('Not valid ID', 400);
       }
 
-      const findResponse = await schema.findById(id);
+      const findResponse = await getItemById(schema, id)
 
       if (!findResponse) {
-        throw new ErrorHandler('Not found', 404);
+        throw new HTTPError('Not found', 404);
       }
 
-      req.findById = findResponse;
+      req.byId = findResponse;
       next();
     } catch (e) {
       next(e);
@@ -29,7 +30,7 @@ module.exports = {
       const { error, value } = validator.validate(req[dataIn]);
 
       if (error) {
-        throw new ErrorHandler(error.details[0].message, 400);
+        throw new HTTPError(error.details[0].message, 400);
       }
 
       req[dataIn] = value;

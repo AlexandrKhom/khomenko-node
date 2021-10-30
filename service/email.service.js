@@ -10,10 +10,10 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const sendMail = async (userMail, title, description) => {
+const sendMail = async (recipient, title, description) => {
     return transporter.sendMail({
         from: 'no reply',
-        to: userMail,
+        to: recipient,
         subject: title,
         html: description
     });

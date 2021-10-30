@@ -1,11 +1,11 @@
 const { Applicant } = require("../dataBase");
 
 module.exports = {
-  getApplicant: async (req, res, next) => {
+  getApplicants: async (req, res, next) => {
     try {
-      const AllApplicant = await Applicant.find(req.query);
+      const allApplicants = await Applicant.find(req.query);
 
-      res.json(AllApplicant);
+      res.json(allApplicants);
     } catch (e) {
       next(e);
     }
@@ -15,7 +15,7 @@ module.exports = {
     try {
       const applicant = await Applicant.create(req.body);
 
-      res.status(201).json(`Created with id ${applicant._id}`);
+      res.status(201).json(applicant._id);
     } catch (e) {
       next(e);
     }
@@ -23,7 +23,7 @@ module.exports = {
 
   changeApplicantById: async (req, res, next) => {
     try {
-      const { _id } = req.findById;
+      const { _id } = req.byId;
 
       const applicant = await Applicant.findByIdAndUpdate(_id, { $set: { ...req.body } }, { new: true });
 
@@ -35,7 +35,7 @@ module.exports = {
 
   deleteApplicantById: async (req, res, next) => {
     try {
-      const { _id } = req.findById;
+      const { _id } = req.byId;
 
       await Applicant.deleteOne({ _id });
 

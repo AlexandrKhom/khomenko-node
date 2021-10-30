@@ -1,5 +1,5 @@
-module.exports = [
+module.exports = new Set([
   'junior',
   'middle',
   'senior'
-];
+]);

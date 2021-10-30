@@ -7,13 +7,13 @@ const positionSchema = new Schema({
     category: {
         type: String,
         required: true,
-        enum: categoriesEnum,
+        enum: [...categoriesEnum],
         trim: true
     },
     level: {
         type: String,
         required: true,
-        enum: levelsEnum,
+        enum: [...levelsEnum],
         trim: true
     },
     company: {

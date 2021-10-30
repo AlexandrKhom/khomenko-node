@@ -12,7 +12,7 @@ const applicantSchema = new Schema({
     categories: {
         type: [String],
         required: true,
-        enum: categoriesEnum,
+        enum: [...categoriesEnum],
         trim: true
     },
     japaneseKnowledge: {
@@ -23,7 +23,7 @@ const applicantSchema = new Schema({
     level: {
         type: String,
         required: true,
-        enum: levelsEnum,
+        enum: [...levelsEnum],
         trim: true
     }
 }, {timestamps: true});

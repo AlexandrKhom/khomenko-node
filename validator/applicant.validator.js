@@ -10,6 +10,7 @@ module.exports = {
       .array()
       .min(1)
       .required()
+      .unique()
       .items(...categoriesEnum),
     level: Joi
       .string()
@@ -31,6 +32,7 @@ module.exports = {
     categories: Joi
         .array()
         .min(1)
+        .unique()
         .items(...categoriesEnum),
     level: Joi
       .string()

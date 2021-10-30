@@ -37,7 +37,7 @@ module.exports = {
 
   getPositionsById: async (req, res, next) => {
     try {
-      const position = req.findById;
+      const position = req.byId;
 
       res.json(position);
     } catch (e) {
@@ -47,7 +47,7 @@ module.exports = {
 
   updatePositionById: async (req, res, next) => {
     try {
-      const { _id } = req.findById;
+      const { _id } = req.byId;
 
       const position = await Position.findByIdAndUpdate(_id, { $set: { ...req.body } }, { new: true });
 
@@ -59,7 +59,7 @@ module.exports = {
 
   deletePositionById: async (req, res, next) => {
     try {
-      const { _id } = req.findById;
+      const { _id } = req.byId;
 
       const position = await Position.findOneAndDelete({ _id });
 
